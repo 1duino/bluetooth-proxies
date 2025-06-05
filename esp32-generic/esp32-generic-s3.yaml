@@ -10,6 +10,10 @@ esp32:
     type: esp-idf
 
 wifi:
+  ssid: "ChinaMobile-WYF"
+  password: "wsh.hxy.wyf"
+  
+  # 保留AP模式作为备用，以防WiFi连接失败
   ap:
 
 api:

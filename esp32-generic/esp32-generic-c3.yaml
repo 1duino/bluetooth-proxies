@@ -1,32 +1,34 @@
 esphome:
   name: esp32-bluetooth-proxy
   friendly_name: Bluetooth Proxy
-  min_version: 2025.5.0
   name_add_mac_suffix: true
 
 esp32:
   board: esp32-c3-devkitm-1
   framework:
-    type: esp-idf
-    sdkconfig_options:
-      CONFIG_BT_BLE_42_FEATURES_SUPPORTED: y
-      CONFIG_BT_BLE_50_FEATURES_SUPPORTED: n
+    type: arduino
 
 wifi:
+  ssid: "ChinaMobile-WYF"
+  password: "wsh.hxy.wyf"
+  
+  # Fallback AP mode
   ap:
+    ssid: "BLE-Proxy Fallback"
+    password: "12345678"
 
 api:
+  encryption:
+    key: "RCgw9sagfQeWH19dfchHNpRtsvhGWSCgroxJ52fXJ58="
+
 logger:
+  level: INFO  # 减少日志级别以节省空间
 
 ota:
-  - platform: esphome
-    id: ota_esphome
+  password: "12345678"
 
 esp32_ble_tracker:
   scan_parameters:
-    # We currently use the defaults to ensure Bluetooth
-    # can co-exist with WiFi In the future we may be able to
-    # enable the built-in coexistence logic in ESP-IDF
     active: true
 
 bluetooth_proxy:
@@ -34,9 +36,4 @@ bluetooth_proxy:
 
 button:
   - platform: safe_mode
-    id: button_safe_mode
     name: Safe Mode Boot
-
-  - platform: factory_reset
-    id: factory_reset_btn
-    name: Factory reset
