@@ -9,23 +9,24 @@ esp32:
     type: arduino
 
 wifi:
-  ssid: "ChinaMobile-WYF"
-  password: "wsh.hxy.wyf"
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
   
   # Fallback AP mode
   ap:
     ssid: "BLE-Proxy Fallback"
-    password: "12345678"
+    password: !secret ap_password
 
+# API configuration is required for bluetooth_proxy
 api:
   encryption:
-    key: "RCgw9sagfQeWH19dfchHNpRtsvhGWSCgroxJ52fXJ58="
+    key: !secret api_encryption_key
 
 logger:
   level: INFO  # 减少日志级别以节省空间
 
 ota:
-  password: "12345678"
+  password: !secret ota_password
 
 esp32_ble_tracker:
   scan_parameters:
